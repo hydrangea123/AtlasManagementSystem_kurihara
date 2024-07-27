@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('under_name_kana', 60)->index('under_name_kana')->comment('メイ');
             $table->string('mail_address', 60)->unique()->comment('メールアドレス');
             $table->integer('sex')->index('sex')->comment('性別');
-            $table->date('birth_day')->index('birth_day')->comment('生年月日')->nullable();
+            $table->date('birth_day')->index('birth_day')->comment('生年月日');
             $table->integer('role')->index('role')->comment('権限');
             $table->string('password', 191)->comment('パスワード');
             $table->rememberToken();
