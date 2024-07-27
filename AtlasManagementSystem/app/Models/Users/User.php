@@ -15,7 +15,7 @@ class User extends Authenticatable
     use Notifiable;
     use softDeletes;
 
-    const CREATED_AT = null;
+    //const CREATED_AT = null;
 
     /**
      * The attributes that are mass assignable.
