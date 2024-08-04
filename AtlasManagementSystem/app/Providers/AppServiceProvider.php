@@ -3,6 +3,7 @@
 namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function($user){
             return ($user->role == "1" || $user->role == "2" || $user->role == "3");
         });
+
     }
 }
