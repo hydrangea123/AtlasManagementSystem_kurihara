@@ -23,6 +23,18 @@ class RegisterRequest extends FormRequest
      * @return array
      */
 
+
+    // public function getValidatorInstance(){
+    //    if($this->input('old_year') && $this->input('old_month') && $this->input('old_day'))
+    //    {
+    //        $birthDate = implode('-', $this->only(['old_year','old_month','old_day']));
+    //        $this->marge([
+    //            'data' => $birthDate,
+    //        ]);
+    //    }
+    //        return parent::getValidatorInstance();
+    //    }
+//
     public function rules()
     {
         return [
@@ -31,14 +43,16 @@ class RegisterRequest extends FormRequest
             'over_name_kana'                 => 'required|max:30|katakana',
             'under_name_kana'                => 'required|max:30|katakana',
             'mail_address'                   => 'required|email|unique:users|max:100',
-            //'sex'                            => 'required|Rule::in(1,2,3)',
-            //'old_year' && 'old_month' && 'old_day' => 'required|after:"2000/01/01"|date',
-            //'role'                           => 'required|Rule::in(1,2,3,4)',
+            'sex'                            => ['required','regex:/(1|2|3)/'],
+            //'data'                           => 'after:"2000/01/01"|date',
+            //'old_year'                       => 'required_with:old_month,old_day',
+            //'old_month'                      => 'required_with:old_year,old_day'
+            //'old_day'                        => 'required_with:old_year,old_month,
+            //'role'                           => 'required|Rule::in([1,2,3,4])',
             //'password'                       => 'required|between:8,30|confirmed',
-
-
         ];
     }
+
 
     public function messages(){
         return [
@@ -66,9 +80,12 @@ class RegisterRequest extends FormRequest
             'sex.required'            => '性別は必ず入力してください',
             'sex.Rule'                => 'いずれかを選択してください',
 
-            'old_year','old_month','old_day.required' => '誕生日は必ず入力してください',
-            'old_year','old_month','old_day.after'    => '2000年1月日以降で入力してください',
-            'old_year','old_month','old_day.date'     => '日付形式で入力してください',
+            'data.data'               => '有効な日付で入力してください',
+            'data.after'              => '2000年1月日以降で入力してください',
+
+            'old_year.required'       => '生年月日（年）は必ず入力してください',
+            'old_month.required'      => '生年月日（月）は必ず入力してください',
+            'old_day.required'        => '生年月日（日）は必ず入力してください',
 
             'role.required'            => '役職は必ず入力してください',
             'role.Rule'                => 'いずれかを選択してください',

@@ -15,5 +15,7 @@ class MasterDatabaseSeeder extends Seeder
     {
         //ユーザー作成
 
+        // ロール作成
+        $adminRole = Role::create([''])
     }
 }
