@@ -146,6 +146,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'birth'           => '生年月日',
+        'birth_year'      => '生年月日（年）',
+        'birth_month'     => '生年月日（月）',
+        'birth_day'       => '生年月日（日）',
+    ],
 
 ];

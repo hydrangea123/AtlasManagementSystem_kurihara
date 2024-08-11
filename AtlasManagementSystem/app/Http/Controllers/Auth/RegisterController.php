@@ -82,7 +82,6 @@ class RegisterController extends Controller
                 'password' => bcrypt($request->password)
             ]);
             $user = User::findOrFail($user_get->id);
-            dd($user);
             $user->subjects()->attach($subjects);
             DB::commit();
             return view('auth.login.login');
