@@ -80,4 +80,9 @@ class User extends Authenticatable
     public function likePostId(){
         return Like::where('like_user_id', Auth::id());
     }
+
+    //roleテーブルとのリレーション定義
+    public function roles(){
+        return $this->belongsToMany(Role::class,'role_has_permissions','role_id','user_id');
+    }
 }
