@@ -7,8 +7,12 @@
 }
 
 /* body */
+.body {
+    background-color: #ecf1f6;
+}
+
 .all_content {
-    background: #ECF1F6;
+    background-color: #F1F7FE;
 }
 
 ul,
@@ -18,7 +22,7 @@ li {
 
 /* サイドバー */
 .sidebar {
-    width: 150px;
+    width: 200px;
     height: 100vh;
     background-color: #03AAD2;
     font-weight: bold;
@@ -30,6 +34,9 @@ li {
 
 .sidebar p a {
     color: #FFF;
+    padding-left: 5px;
+    position: relative;
+    top: 6px;
 }
 
 /* トップページ */
@@ -292,4 +299,87 @@ li {
 
 .errors p {
     margin-bottom: 0;
+}
+
+/* ログイン画面 */
+.home_box {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+}
+
+.icon {
+    width: 22px;
+}
+
+.atlas {
+    text-align: center;
+}
+
+.atlas img {
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+.border {
+    width: 400px;
+    background-color: white;
+}
+
+.shadow_border {
+    border-radius: 10px;
+    box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 10px #aaa;
+}
+
+.text-center {
+    margin-bottom: 25px;
+}
+
+.input_bg {
+    background-color: #fff;
+}
+
+.d-block {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* 新規登録 */
+
+.birth_flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.old_year,
+.old_month,
+.old_day {
+    border: none;
+    width: 80px;
+}
+
+.birth_content {
+    display: flex;
+}
+
+.sex_box {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* カレンダー */
+.calender_border {
+    border: solid 1px #dee2e6;
+}
+
+.reserve_btn {
+    position: relative;
+    top: 15px;
 }

@@ -22,15 +22,36 @@
     <div class="d-flex">
         <div class="sidebar">
             @section('sidebar')
-                <p><a href="{{ route('top.show') }}">トップ</a></p>
-                <p><a href="/logout">ログアウト</a></p>
-                <p><a href="{{ route('calendar.general.show', ['user_id' => Auth::id()]) }}">スクール予約</a></p>
+                <div class="menu">
+                    <img src="{{ asset('image/home.svg') }}" alt="icon" class="icon">
+                    <p><a href="{{ route('top.show') }}">マイページ</a></p>
+                </div>
+                <div class="menu">
+                    <img src="{{ asset('image/logout.svg') }}" alt="icon" class="icon">
+                    <p><a href="/logout">ログアウト</a></p>
+                </div>
+                <div class="menu">
+                    <img src="{{ asset('image/school_reservation.svg') }}" alt="icon" class="icon">
+                    <p><a href="{{ route('calendar.general.show', ['user_id' => Auth::id()]) }}">スクール予約</a></p>
+                </div>
                 @can('teacher')
-                    <p><a href="{{ route('calendar.admin.show', ['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-                    <p><a href="{{ route('calendar.admin.setting', ['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+                    <div class="menu">
+                        <img src="{{ asset('image/school_reservation_confirmation.svg') }}" alt="icon" class="icon">
+                        <p><a href="{{ route('calendar.admin.show', ['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+                    </div>
+                    <div class="menu">
+                        <img src="{{ asset('image/school_registration.svg') }}" alt="icon" class="icon">
+                        <p><a href="{{ route('calendar.admin.setting', ['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+                    </div>
                 @endcan
-                <p><a href="{{ route('post.show') }}">掲示板</a></p>
-                <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+                <div class="menu">
+                    <img src="{{ asset('image/comment.svg') }}" alt="icon" class="icon">
+                    <p><a href="{{ route('post.show') }}">掲示板</a></p>
+                </div>
+                <div class="menu">
+                    <img src="{{ asset('image/users.svg') }}" alt="icon" class="icon">
+                    <p><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+                </div>
             @show
         </div>
         <div class="main-container">
