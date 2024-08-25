@@ -49,6 +49,23 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
+        $validated = $request->validate([
+            'post_category_id' => 'required|exists:sub_categories,sub_category',
+            'post_title'       => 'required|string|max:100',
+            'post_body'        => 'required|string|max:5000'
+        ],
+        [
+            'post_category_id.required'      => 'サブカテゴリーは必須項目です',
+            'post_category_id.exists'        => '登録しているサブカテゴリーを指定してください',
+
+            'post_title.required'   => 'タイトルは必ず記入してください',
+            'post_title.string'     => 'タイトルは文字で記入してください',
+            'post_title.max'        => 'タイトルは100文字以内で記入してください',
+
+            'post_body.required'    => '投稿内容は必ず記入してください',
+            'post_body.string'      => '投稿内容は文字で記入してください',
+            'post_body.max'         => '投稿内容は5000文字以内で記入してください',
+        ]);
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
@@ -62,6 +79,15 @@ class PostsController extends Controller
         $validated = $request->validate([
             'post_title'       => 'required|string|max:100',
             'post_body'        => 'required|string|max:5000'
+        ],
+        [
+            'post_title.required'   => 'タイトルは必ず記入してください',
+            'post_title.string'     => 'タイトルは文字で記入してください',
+            'post_title.max'        => 'タイトルは100文字以内で記入してください',
+
+            'post_body.required'    => '投稿内容は必ず記入してください',
+            'post_body.string'      => '投稿内容は文字で記入してください',
+            'post_body.max'         => '投稿内容は5000文字以内で記入してください',
         ]);
 
         Post::where('id', $request->post_id)->update([

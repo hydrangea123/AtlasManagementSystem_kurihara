@@ -17,6 +17,18 @@
                         @endif
                     </div>
 
+                    <div class="errors">
+                        @if ($errors->has('post_title'))
+                            <p>{{ $errors->first('post_title') }}</p>
+                        @endif
+                    </div>
+
+                    <div class="errors">
+                        @if ($errors->has('post_body'))
+                            <p>{{ $errors->first('post_body') }}</p>
+                        @endif
+                    </div>
+
                     <div class="contributor d-flex">
                         <p>
                             <span>{{ $post->user->over_name }}</span>
@@ -65,20 +77,11 @@
                     <div class="modal-inner-title w-50 m-auto">
                         <input type="text" name="post_title" placeholder="タイトル" class="w-100">
                     </div>
-                    <div class="errors">
-                        @if ($errors->has('post_title'))
-                            <p>{{ $errors->first('post_title') }}</p>
-                        @endif
-                    </div>
 
                     <div class="modal-inner-body w-50 m-auto pt-3 pb-3">
                         <textarea placeholder="投稿内容" name="post_body" class="w-100"></textarea>
                     </div>
-                    <div class="errors">
-                        @if ($errors->has('post_body'))
-                            <p>{{ $errors->first('post_body') }}</p>
-                        @endif
-                    </div>
+
                     <div class="w-50 m-auto edit-modal-btn d-flex">
                         <a class="js-modal-close btn btn-danger d-inline-block" href="">閉じる</a>
                         <input type="hidden" class="edit-modal-hidden" name="post_id" value="">
