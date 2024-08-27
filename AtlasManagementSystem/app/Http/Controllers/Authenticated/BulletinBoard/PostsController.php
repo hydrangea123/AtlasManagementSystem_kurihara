@@ -20,6 +20,7 @@ class PostsController extends Controller
         $categories = MainCategory::get();
         $like = new Like;
         $post_comment = new Post;
+        $comments_count = $post_comment->$commentCounts();
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
@@ -35,7 +36,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment','comments_count'));
     }
 
     public function postDetail($post_id){
@@ -113,6 +114,12 @@ class PostsController extends Controller
             'comment' => $request->comment
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
+    }
+
+    public function count(){
+
+        return view('authenticated.bulletinboard.posts',compact('counts'));
+
     }
 
     public function myBulletinBoard(){
