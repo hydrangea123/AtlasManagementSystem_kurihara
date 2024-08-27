@@ -116,12 +116,6 @@ class PostsController extends Controller
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
 
-    public function count(){
-
-        return view('authenticated.bulletinboard.posts',compact('counts'));
-
-    }
-
     public function myBulletinBoard(){
         $posts = Auth::user()->posts()->get();
         $like = new Like;
