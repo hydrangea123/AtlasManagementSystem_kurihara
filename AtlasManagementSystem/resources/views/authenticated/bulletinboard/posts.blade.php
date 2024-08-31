@@ -12,18 +12,20 @@
                     <div class="post_bottom_area d-flex">
                         <div class="d-flex post_status">
                             <div class="mr-5">
-                                <i class="fa fa-comment"></i><span class="">{{ $comments_count->count() }}</span>
+                                <i class="fa fa-comment"></i><span
+                                    class="">{{ $post_comment->commentCounts($post->id)->count() }}</span>
                             </div>
                             <div>
                                 @if (Auth::user()->is_Like($post->id))
                                     <p class="m-0"><i class="fas fa-heart un_like_btn"
                                             post_id="{{ $post->id }}"></i><span
-                                            class="like_counts{{ $post->id }}">{{ $like->count() }}</span>
+                                            class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span>
                                     </p>
                                 @else
                                     <p class="m-0"><i class="fas fa-heart like_btn"
                                             post_id="{{ $post->id }}"></i><span
-                                            class="like_counts{{ $post->id }}"></span></p>
+                                            class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span>
+                                    </p>
                                 @endif
                             </div>
                         </div>
