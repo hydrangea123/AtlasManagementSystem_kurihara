@@ -45,33 +45,8 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
-    }
-
-    public function postCreate(PostFormRequest $request){
-        $validated = $request->validate([
-            'post_category_id' => 'required|exists:sub_categories,sub_category',
-            'post_title'       => 'required|string|max:100',
-            'post_body'        => 'required|string|max:5000'
-        ],
-        [
-            'post_category_id.required'      => 'サブカテゴリーは必須項目です',
-            'post_category_id.exists'        => '登録しているサブカテゴリーを指定してください',
-
-            'post_title.required'   => 'タイトルは必ず記入してください',
-            'post_title.string'     => 'タイトルは文字で記入してください',
-            'post_title.max'        => 'タイトルは100文字以内で記入してください',
-
-            'post_body.required'    => '投稿内容は必ず記入してください',
-            'post_body.string'      => '投稿内容は文字で記入してください',
-            'post_body.max'         => '投稿内容は5000文字以内で記入してください',
-        ]);
-        $post = Post::create([
-            'user_id' => Auth::id(),
-            'post_title' => $request->post_title,
-            'post' => $request->post_body
-        ]);
-        return redirect()->route('post.show');
+        $sub_categories = SubCategory::get();
+        return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
     }
 
     public function postEdit(Request $request){
@@ -102,7 +77,21 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
     public function mainCategoryCreate(Request $request){
+        $validated = $request->validate([
+        'main_category_name' => 'required|max:100|string|unique:main_categories,main_category']);
         MainCategory::create(['main_category' => $request->main_category_name]);
+        return redirect()->route('post.input');
+    }
+
+    public function subCategoryCreate(Request $request){
+        $validated = $request->validate([
+            'main_category_id'   => 'required|exists:main_categories,id',
+            'sub_category_name'  => 'required|max:100|string|unique:sub_categories,sub_category'
+        ]);
+        SubCategory::create([
+            'sub_category' => $request->sub_category_name,
+            'main_category_id' => $request->main_category_id
+      ]);
         return redirect()->route('post.input');
     }
 
@@ -152,16 +141,5 @@ class PostsController extends Controller
              ->delete();
 
         return response()->json();
-    }
-
-    public function store(Request $request)
-    {
-      $request->validate([
-        'title' => 'required|max:255',
-        'body' => 'required',
-      ]);
-      Post::create($request->all());
-      return redirect()->route('posts.index')
-        ->with('success', 'Post created successfully.');
     }
 }
