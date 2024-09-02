@@ -155,7 +155,8 @@ return [
         'post_body'       =>  '投稿内容',
         'main_category_id' => 'メインカテゴリー',
         'main_category_name' => 'メインカテゴリー',
-        'sub_category_name' => 'サブカテゴリー'
+        'sub_category_name' => 'サブカテゴリー',
+        'comment'           => 'コメント'
     ],
 
 ];

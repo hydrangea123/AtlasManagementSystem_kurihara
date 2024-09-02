@@ -96,6 +96,9 @@ class PostsController extends Controller
     }
 
     public function commentCreate(Request $request){
+        $validated = $request->validate([
+            'comment'  => 'required|max:250|string'
+        ]);
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
