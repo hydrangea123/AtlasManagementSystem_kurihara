@@ -44,8 +44,16 @@ class PostsController extends Controller
     }
 
     public function postInput(){
-        $main_categories = MainCategory::get();
-        $sub_categories = SubCategory::get();
+        $main_categories = MainCategory::all();
+        $sub_categories = SubCategory::query()
+            ->whereIn('main_category_id',  $main_categories->pluck('id')->toArray())
+            ->get();
+
+        $main_categories = $main_categories->map(function (MainCategory $main_category) use ($sub_categories) {
+            $subs = $sub_categories->where('main_category_id', $main_category->id);
+            $main_category->setAttribute('sub_categories', $subs);
+            return $main_category;
+        });
         return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
     }
 
