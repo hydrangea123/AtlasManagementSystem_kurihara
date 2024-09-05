@@ -48,13 +48,36 @@ class PostsController extends Controller
         $sub_categories = SubCategory::query()
             ->whereIn('main_category_id',  $main_categories->pluck('id')->toArray())
             ->get();
-
-        $main_categories = $main_categories->map(function (MainCategory $main_category) use ($sub_categories) {
+            $main_categories = $main_categories->map(function (MainCategory $main_category) use ($sub_categories) {
+            // map 配列情報を作成する
+            // foreachのように一つのメインカテゴリーの取得が終われば次のメインカテゴリーを取りに行く
             $subs = $sub_categories->where('main_category_id', $main_category->id);
+            // (カラム名：レコード)
             $main_category->setAttribute('sub_categories', $subs);
             return $main_category;
         });
-        return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
+        // dd($main_categories);
+        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+    }
+
+    public function postCreate(Request $request){
+        $validated = $request->validate([
+            'post_category_id'  => 'required|max:250|exists:sub_categories,id',
+            'post_title'        => 'required|max:100|string',
+            'post'              => 'required|max:5000|string'
+        ]);
+
+        Post::create([
+            'user_id'    => Auth::id(),
+            'post_title' => $request->post_title,
+            'post'       => $request->post
+            ]);
+
+        SubCategory::create([
+            'post_id'           => Auth::id(),
+            'sub_category_id'   => $request->sub_category_id,
+        ]);
+            return redirect()->route('authenticated.bulletinboard.post_create');
     }
 
     public function postEdit(Request $request){
@@ -62,15 +85,6 @@ class PostsController extends Controller
         $validated = $request->validate([
             'post_title'       => 'required|string|max:100',
             'post_body'        => 'required|string|max:5000'
-        ],
-        [
-            'post_title.required'   => 'タイトルは必ず記入してください',
-            'post_title.string'     => 'タイトルは文字で記入してください',
-            'post_title.max'        => 'タイトルは100文字以内で記入してください',
-
-            'post_body.required'    => '投稿内容は必ず記入してください',
-            'post_body.string'      => '投稿内容は文字で記入してください',
-            'post_body.max'         => '投稿内容は5000文字以内で記入してください',
         ]);
 
         Post::where('id', $request->post_id)->update([
