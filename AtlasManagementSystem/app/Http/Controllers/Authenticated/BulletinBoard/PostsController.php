@@ -12,12 +12,14 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Auth;
+use DB;
 
 class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
+        // $main_categories = Post::with('subCategories:')
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
@@ -60,24 +62,36 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
-    public function postCreate(Request $request){
+    public function postCreate(Request $request)
+    {
         $validated = $request->validate([
             'post_category_id'  => 'required|max:250|exists:sub_categories,id',
             'post_title'        => 'required|max:100|string',
             'post'              => 'required|max:5000|string'
         ]);
 
-        Post::create([
-            'user_id'    => Auth::id(),
-            'post_title' => $request->post_title,
-            'post'       => $request->post
+        DB::beginTransaction();
+        try{
+            $post_sub_category = $request->post_category_id;
+            $post_title = $request->post_title;
+            $post = $request->post;
+
+            $post_get = Post::create([
+                'user_id'    => Auth::id(),
+                'post_title' => $request->post_title,
+                'post'       => $request->post
             ]);
 
-        SubCategory::create([
-            'post_id'           => Auth::id(),
-            'sub_category_id'   => $request->sub_category_id,
-        ]);
-            return redirect()->route('authenticated.bulletinboard.post_create');
+
+            $posted_sub_category = Post::findOrFail($post_get->id);
+            $posted_sub_category->subCategories()->attach($post_sub_category);
+            DB::commit();
+            return redirect()->route('post.show');
+        }catch(\Exception $e){
+            //  dd($e);
+            DB::rollback();
+            return back();
+        }
     }
 
     public function postEdit(Request $request){
