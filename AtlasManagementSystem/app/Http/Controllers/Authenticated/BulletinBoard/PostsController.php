@@ -19,13 +19,14 @@ class PostsController extends Controller
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
-        // $main_categories = Post::with('subCategories:')
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
-            $posts = Post::with('user', 'postComments')
+            $posts = Post::with('user', 'postComments','subCategories')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
-            ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
+            ->orWhere('post', 'like', '%'.$request->keyword.'%')
+            ->orWhere('sub_category', '=', '%'.$request->keyword.'%')
+            ->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
             $posts = Post::with('user', 'postComments')->get();
@@ -88,7 +89,6 @@ class PostsController extends Controller
             DB::commit();
             return redirect()->route('post.show');
         }catch(\Exception $e){
-            //  dd($e);
             DB::rollback();
             return back();
         }

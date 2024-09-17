@@ -45,6 +45,12 @@ li {
     background: #FFF;
 }
 
+.name {
+    position: relative;
+    bottom: 30px;
+    right: 135px;
+}
+
 /* スクール予約関連 */
 .day-blank {
     background: #D3D3D3;
@@ -157,6 +163,17 @@ li {
     color: red;
 }
 
+.icon_flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.m-0,
+.fa {
+    color: gray;
+    margin-right: 4px;
+}
+
 /* 掲示板 詳細画面 */
 .contributor {
     font-size: 12px;
@@ -234,7 +251,7 @@ li {
     border-radius: 5px;
     padding: 0 5px;
     border: none;
-    background: #999;
+    background: #03aad2;
     color: #FFF;
 }
 
@@ -245,16 +262,38 @@ li {
 }
 
 /* ユーザー検索 */
+.search_content,
+.search_area,
+.reserve_users_area {
+    background-color: #f1f7fe;
+}
+
 .reserve_users_area {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 800px;
     margin: 10px auto;
     height: 80vh;
     overflow: scroll;
     padding: 10px;
-    background: #FFF;
     border-radius: 5px;
+}
+
+.reserve_users_area::after {
+    content: "";
+    display: block;
+    width: 23%;
+    /* 子要素と同じ幅 */
+}
+
+.reserve_users_area::before {
+    content: "";
+    display: block;
+    width: 23%;
+    /* 子要素と同じ幅 */
+    order: 1;
+    /* アイテムの並び順 orderが指定されていないアイテムは0番目になる→最初に並ぶ*/
 }
 
 .reserve_users_area span {
@@ -262,9 +301,13 @@ li {
 }
 
 .one_person {
-    width: 250px;
-    height: 250px;
+    width: 23%;
+    /* 親要素の1/4より小さい値 */
+    height: 210px;
+    padding: 20px;
 }
+
+
 
 .search_conditions span {
     cursor: pointer;
@@ -283,6 +326,10 @@ li {
 
 .subject_inner {
     display: none;
+}
+
+.profile_p {
+    font-weight: bold;
 }
 
 /* 新規登録 */
@@ -330,12 +377,13 @@ li {
 
 .border {
     width: 400px;
-    background-color: white;
 }
 
 .shadow_border {
     border-radius: 10px;
     box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 10px #aaa;
+    margin: 10px;
+    background: #fff;
 }
 
 .text-center {

@@ -73,7 +73,7 @@
                         {{ csrf_field() }}
                         <div class="sub_category">
                             <p class="m-0">サブカテゴリー</p>
-                            <select class="form-control" id="main_category_id" name="post_category_id">
+                            <select class="form-control" id="main_category_id" name="main_category_id">
                                 <option>選択してください</option>
                                 @foreach ($main_categories as $main_category)
                                     <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
