@@ -5,13 +5,15 @@
             <div class="m-3 detail_container">
                 <div class="p-3">
                     <div class="detail_inner_head">
-                        <div>
-                        </div>
+                        @foreach ($post->subCategories as $subCategory)
+                            <sapn class="category_btn">{{ $subCategory->sub_category }}</sapn>
+                        @endforeach
+
                         @if (Auth::user()->id == $post->user_id)
                             <div>
-                                <span class="edit-modal-open" post_title="{{ $post->post_title }}"
+                                <span class="edit-modal-open btn btn-primary" post_title="{{ $post->post_title }}"
                                     post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-                                <a href="{{ route('post.delete', ['id' => $post->id]) }}"
+                                <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger"
                                     onClick="return confirm('この投稿を削除します。よろしいでしょうか？')">削除</a>
                             </div>
                         @endif
@@ -39,8 +41,7 @@
                     </div>
                     <div class="detsail_post_title">{{ $post->post_title }}</div>
                     <div class="mt-3 detsail_post">{{ $post->post }}</div>
-                </div>
-                <div class="p-3">
+
                     <div class="comment_container">
                         <span class="">コメント</span>
                         @foreach ($post->postComments as $comment)

@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <div class="top_area w-75 m-auto pt-5">
-            <p class="name">自分のプロフィール</p>
+            <p class="name">{{ Auth::user()->over_name }}{{ Auth::user()->under_name }}さんのプロフィール</p>
             <div class="user_status p-3">
                 <p>名前：<span>{{ Auth::user()->over_name }}</span><span class="ml-1">{{ Auth::user()->under_name }}</span>
                 </p>

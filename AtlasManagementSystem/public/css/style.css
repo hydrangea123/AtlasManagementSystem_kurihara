@@ -137,6 +137,7 @@ li {
 
 .detail_container {
     background: #FFF;
+    border-radius: 15px;
 }
 
 .post_area {
@@ -148,14 +149,13 @@ li {
     justify-content: space-between;
 }
 
-.like_btn,
 .un_like_btn {
     cursor: pointer;
+    color: #E2254D;
 }
 
-.un_like,
-.un_like_btn {
-    color: #E2254D;
+.like_btn {
+    color: #aaa;
 }
 
 .error_message {
@@ -170,7 +170,6 @@ li {
 
 .m-0,
 .fa {
-    color: gray;
     margin-right: 4px;
 }
 
@@ -194,6 +193,7 @@ li {
 .detail_inner_head {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .edit-modal-open {
@@ -212,10 +212,20 @@ li {
 /* 掲示板 コメント */
 .comment_container {
     background: #FFF;
+    margin-top: 20px;
 }
 
-.comment_area p,
+.comment_area {
+    border-radius: 15px;
+}
+
 .comment_area input {
+    font-size: 12px;
+    display: block;
+    margin-left: auto;
+}
+
+.comment_area p {
     font-size: 12px;
     font-weight: bold;
 }
@@ -255,8 +265,8 @@ li {
 
 .category_btn {
     font-size: 12px;
-    border-radius: 5px;
-    padding: 0 5px;
+    border-radius: 7px;
+    padding: 5px;
     border: none;
     background: #03aad2;
     color: #FFF;
@@ -288,10 +298,12 @@ li {
 }
 
 .post_btn {
+    width: 280px;
     text-align: center;
     background-color: #03aad2;
     border-radius: 5px;
     margin-bottom: 15px;
+
 }
 
 .post_btn a {
@@ -442,7 +454,7 @@ li {
     margin-bottom: 30px;
 }
 
-.border {
+.content_w {
     width: 400px;
 }
 

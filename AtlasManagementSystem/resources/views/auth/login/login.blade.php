@@ -21,7 +21,7 @@
         <div class="atlas"><img src="{{ asset('image/atlas-black.png') }}" alt="icon" class="atlas_icon"></div>
         <form action="{{ route('loginPost') }}" method="POST">
             <div>
-                <div class="shadow_border border vh-50">
+                <div class="shadow_border content_w vh-50">
                     <div class="w-75 m-auto pt-5">
                         <label class="d-block m-0">メールアドレス</label>
                         <div class="border-bottom border-primary w-100">
