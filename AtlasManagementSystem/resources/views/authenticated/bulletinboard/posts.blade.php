@@ -40,7 +40,7 @@
             @endforeach
         </div>
         <div class="other_area w-25">
-            <div class="m-4" id="search_content">
+            <div class="" id="search_content">
                 <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
                 <div class="search">
                     <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest"
