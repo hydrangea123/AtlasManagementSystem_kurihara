@@ -22,12 +22,12 @@
                                 </div>
                                 <div>
                                     @if (Auth::user()->is_Like($post->id))
-                                        <p class="m-0"><i class="fas fa-heart un_like_btn"
+                                        <p class="m-0"><i class="fas  fa fa-heart un_like_btn"
                                                 post_id="{{ $post->id }}"></i><span
                                                 class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span>
                                         </p>
                                     @else
-                                        <p class="m-0"><i class="fas fa-heart like_btn"
+                                        <p class="m-0"><i class="fas fa fa-heart like_btn"
                                                 post_id="{{ $post->id }}"></i><span
                                                 class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span>
                                         </p>
@@ -39,21 +39,30 @@
                 </div>
             @endforeach
         </div>
-        <div class="other_area border w-25">
-            <div class="border m-4">
-                <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-                <div class="">
-                    <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-                    <input type="submit" value="検索" form="postSearchRequest">
+        <div class="other_area w-25">
+            <div class="m-4" id="search_content">
+                <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
+                <div class="search">
+                    <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest"
+                        class="search_area">
+                    <input type="submit" value="検索" form="postSearchRequest" class="search_btn">
                 </div>
-                <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-                <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+
+                <div class="color_btn">
+                    <input type="submit" name="like_posts" class="category_btn posted_like_btn" value="いいねした投稿"
+                        form="postSearchRequest">
+                    <input type="submit" name="my_posts" class="category_btn my_post_btn" value="自分の投稿"
+                        form="postSearchRequest">
+                </div>
                 <ul>
+                    <p>カテゴリー検索</p>
                     @foreach ($categories as $category)
-                        <li class="main_categories" category_id="{{ $category->id }}"></li>
-                        <input type="submit" name="sub_category" value="{{ $category->main_category }}"
-                            form="postSearchRequest">
-                        <li>{{ $category->sub_category }}</li>
+                        <li class="main_categories" category_id="{{ $category->id }}">{{ $category->main_category }}</li>
+
+                        @foreach ($category->subCategories as $subCategory)
+                            <input type="submit" name="category_word" class="sub_categories"
+                                value="{{ $subCategory->sub_category }}" form="postSearchRequest">
+                        @endforeach
                     @endforeach
                 </ul>
             </div>

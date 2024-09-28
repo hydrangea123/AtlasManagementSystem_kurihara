@@ -119,10 +119,10 @@ li {
     width: 60%;
 }
 
-/* 掲示板 */
-.sub_categories {
-    display: none;
-}
+掲示板
+/* .sub_categories { */
+/* display: none; */
+/* } */
 
 .post_create_area {
     background: #FFF;
@@ -173,6 +173,7 @@ li {
     color: gray;
     margin-right: 4px;
 }
+
 
 /* 掲示板 詳細画面 */
 .contributor {
@@ -232,7 +233,13 @@ li {
     font-size: 12px;
 }
 
+
+
 /* 掲示板　カテゴリー */
+#search_content {
+    margin-top: 50px;
+}
+
 .category_area {
     background: #FFF;
     border-radius: 10px;
@@ -255,11 +262,71 @@ li {
     color: #FFF;
 }
 
+.posted_like_btn {
+    width: 137px;
+    padding: 5px;
+    background-color: #e38eab;
+    color: #fff;
+
+}
+
+.my_post_btn {
+    width: 137px;
+    padding: 5px;
+    background-color: #ebbc5d;
+    color: #fff;
+}
+
+.color_btn {
+    margin-bottom: 15px;
+}
+
 .main_categories span,
 .sub_categories li input {
     list-style: none;
     cursor: pointer;
 }
+
+.post_btn {
+    text-align: center;
+    background-color: #03aad2;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.post_btn a {
+    display: block;
+    color: #fff;
+    padding: 5px;
+}
+
+.search {
+    width: 280px;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.search_area {
+    display: inline-block;
+    width: 208px;
+    margin: 0;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+
+}
+
+.search_btn {
+    display: inline-block;
+    width: 72px;
+    margin: 0;
+    border: none;
+    background-color: #03aad2;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    padding: 5px;
+}
+
 
 /* ユーザー検索 */
 .search_content,

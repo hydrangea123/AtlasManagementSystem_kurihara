@@ -22,14 +22,19 @@ class PostsController extends Controller
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
+            $keyword = $request->keyword;
             $posts = Post::with('user', 'postComments','subCategories')
-            ->where('post_title', 'like', '%'.$request->keyword.'%')
-            ->orWhere('post', 'like', '%'.$request->keyword.'%')
-            ->orWhere('sub_category', '=', '%'.$request->keyword.'%')
-            ->get();
+            ->where('post_title', 'like', '%'.$keyword.'%')
+            ->orWhere('post', 'like', '%'.$keyword.'%')
+            ->whereHas('subCategories',function ($q) use ($keyword){
+                $q->where('sub_category', '=', '%'.$keyword.'%' );
+            })->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $posts = Post::whereHas('subCategories',function ($q) use ($sub_category){
+                $q->where('sub_category', $sub_category );
+            })->get();
+
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -38,6 +43,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
+
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
@@ -51,15 +57,15 @@ class PostsController extends Controller
         $sub_categories = SubCategory::query()
             ->whereIn('main_category_id',  $main_categories->pluck('id')->toArray())
             ->get();
-            $main_categories = $main_categories->map(function (MainCategory $main_category) use ($sub_categories) {
-            // map 配列情報を作成する
-            // foreachのように一つのメインカテゴリーの取得が終われば次のメインカテゴリーを取りに行く
-            $subs = $sub_categories->where('main_category_id', $main_category->id);
-            // (カラム名：レコード)
-            $main_category->setAttribute('sub_categories', $subs);
-            return $main_category;
+        $main_categories = $main_categories->map(function (MainCategory $main_category) use ($sub_categories) {
+        // map 配列情報を作成する
+        // foreachのように一つのメインカテゴリーの取得が終われば次のメインカテゴリーを取りに行く
+        $subs = $sub_categories->where('main_category_id', $main_category->id);
+        // (カラム名：レコード)
+        $main_category->setAttribute('sub_categories', $subs);
+        return $main_category;
         });
-        // dd($main_categories);
+        //  dd($main_categories);
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
