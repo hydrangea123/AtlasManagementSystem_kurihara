@@ -95,22 +95,21 @@
                             <label>選択科目</label>
                             @foreach ($subjects as $subject)
                                 <div>
-                                    <label>{{ $subject->subject }}</label>
+                                    <lavel>{{ $subject->subject }}</lavel>
                                     <input type="checkbox" name="subjects[]" value="{{ $subject->id }}"
                                         form="userSearchRequest">
                                 </div>
                             @endforeach
                         </div>
                     </div>
+                    <div>
+                        <input type="reset" value="リセット" form="userSearchRequest">
+                    </div>
+                    <div>
+                        <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+                    </div>
                 </div>
-                <div>
-                    <input type="reset" value="リセット" form="userSearchRequest">
-                </div>
-                <div>
-                    <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
-                </div>
+                <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
             </div>
-            <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
         </div>
-    </div>
-@endsection
+    @endsection

@@ -119,10 +119,58 @@ li {
     width: 60%;
 }
 
-掲示板
-/* .sub_categories { */
-/* display: none; */
-/* } */
+/* 掲示板 */
+.accordion {
+    max-width: 500px;
+    margin-bottom: 7px;
+    border-bottom: 2px solid #d0d0d0;
+}
+
+.accordion summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 1em 2em;
+    color: #333333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion summary::after {
+    transform: translateY(-25%) rotate(45deg);
+    width: 7px;
+    height: 7px;
+    margin-left: 10px;
+    border-bottom: 3px solid #333333b3;
+    border-right: 3px solid #333333b3;
+    content: '';
+    transition: transform .3s;
+}
+
+.accordion[open] summary::after {
+    transform: rotate(225deg);
+}
+
+.accordion input {
+    transform: translateY(-10px);
+    opacity: 0;
+    margin: 0;
+    padding: .3em 2em 1.5em;
+    color: #333333;
+    transition: transform .5s, opacity .5s;
+}
+
+.accordion[open] input {
+    transform: none;
+    opacity: 1;
+}
+
+
 
 .post_create_area {
     background: #FFF;
@@ -147,6 +195,10 @@ li {
 
 .post_bottom_area {
     justify-content: space-between;
+}
+
+.fa-comment {
+    color: #aaa;
 }
 
 .un_like_btn {
