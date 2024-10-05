@@ -66,6 +66,7 @@ class CalendarWeekDay{
      }else{
        $html[] = '<option value="3">リモ3部(残り'.$three_part_frame.'枠)</option>';
      }
+
      $html[] = '</select>';
      return implode('', $html);
    }

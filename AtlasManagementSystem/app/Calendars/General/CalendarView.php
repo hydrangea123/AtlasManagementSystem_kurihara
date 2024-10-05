@@ -41,12 +41,13 @@ class CalendarView{
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="calendar-td past-day">受付終了';
+          $html[] = '<td class="calendar-td past-day">';
         }else{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
         $html[] = $day->render();
 
+        //if 当月予約されていたら
         if(in_array($day->everyDay(), $day->authReserveDay())){
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
@@ -56,15 +57,26 @@ class CalendarView{
           }else if($reservePart == 3){
             $reservePart = "リモ3部";
           }
+        // 当月１日から末日まで（10月すべて）&&（かつ）今日よりも以前の日（過去日）
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'.$reservePart.'参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+                        // ↑予約している過去日
           }else{
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+                        // ↑予約している未来日
           }
         }else{
+            if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+                $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+                $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+                        // ↑予約していない過去日
+              }else{
           $html[] = $day->selectPart($day->everyDay());
+              }
+                        // ↑予約していない未来日
+
         }
         $html[] = $day->getDate();
         $html[] = '</td>';
