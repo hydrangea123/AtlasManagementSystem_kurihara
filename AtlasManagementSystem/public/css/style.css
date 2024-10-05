@@ -120,20 +120,15 @@ li {
 }
 
 /* 掲示板 */
-.accordion {
-    max-width: 500px;
-    margin-bottom: 7px;
-    border-bottom: 2px solid #d0d0d0;
-}
-
+/* アコーディオンメニュー */
 .accordion summary {
+    width: 280px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding: 1em 2em;
     color: #333333;
-    font-weight: 600;
+    font-size: 1.1rem;
     cursor: pointer;
 }
 
@@ -150,6 +145,9 @@ li {
     border-right: 3px solid #333333b3;
     content: '';
     transition: transform .3s;
+    position: relative;
+    top: 0;
+    right: 12px;
 }
 
 .accordion[open] summary::after {
@@ -160,9 +158,9 @@ li {
     transform: translateY(-10px);
     opacity: 0;
     margin: 0;
-    padding: .3em 2em 1.5em;
     color: #333333;
     transition: transform .5s, opacity .5s;
+    margin-left: 5px;
 }
 
 .accordion[open] input {
@@ -170,6 +168,11 @@ li {
     opacity: 1;
 }
 
+.main_categories {
+    max-width: 500px;
+    margin-bottom: 7px;
+    border-bottom: 2px solid #d0d0d0;
+}
 
 
 .post_create_area {
@@ -349,6 +352,21 @@ li {
     cursor: pointer;
 }
 
+.sub_categories {
+    border: none;
+    background-color: #f1f7fe;
+    display: inline-block;
+    margin-left: 55px;
+    cursor: pointer;
+    max-width: 500px;
+    margin-bottom: 7px;
+}
+
+.sub_categories_p {
+    margin: 20px 80px 20px 20px;
+    border-bottom: 2px solid #d0d0d0;
+}
+
 .post_btn {
     width: 280px;
     text-align: center;
@@ -405,7 +423,6 @@ li {
     justify-content: space-between;
     width: 800px;
     margin: 10px auto;
-    height: 80vh;
     overflow: scroll;
     padding: 10px;
     border-radius: 5px;
@@ -436,9 +453,11 @@ li {
     /* 親要素の1/4より小さい値 */
     height: 210px;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 10px #aaa;
+    margin-bottom: 25px;
+    background: #fff;
 }
-
-
 
 .search_conditions span {
     cursor: pointer;

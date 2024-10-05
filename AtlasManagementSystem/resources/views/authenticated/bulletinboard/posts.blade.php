@@ -56,17 +56,18 @@
                 </div>
 
                 <p>カテゴリー検索</p>
-                <details class="accordion">
-                    @foreach ($categories as $category)
+                @foreach ($categories as $category)
+                    <details class="accordion">
                         <summary class="main_categories" category_id="{{ $category->id }}">
                             {{ $category->main_category }}</summary>
 
                         @foreach ($category->subCategories as $subCategory)
-                            <input type="submit" name="category_word" class="sub_categories"
-                                value="{{ $subCategory->sub_category }}" form="postSearchRequest">
+                            <p class="sub_categories_p"><input type="submit" name="category_word" class="sub_categories"
+                                    value="{{ $subCategory->sub_category }}" form="postSearchRequest"></p>
                         @endforeach
-                    @endforeach
-                </details>
+                    </details>
+                @endforeach
+
 
             </div>
         </div>

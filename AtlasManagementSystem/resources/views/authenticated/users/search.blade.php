@@ -4,7 +4,7 @@
     <div class="search_content w-100 border d-flex">
         <div class="reserve_users_area">
             @foreach ($users as $user)
-                <div class="one_person shadow_border ">
+                <div class="one_person shadow">
                     <div>
                         <span>ID : </span><span class="profile_p">{{ $user->id }}</span>
                     </div>
@@ -56,6 +56,7 @@
         <div class="search_area w-25 border">
             <div class="">
                 <div>
+                    <lavel>検索</lavel>
                     <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
                 </div>
                 <div>
@@ -72,8 +73,8 @@
                         <option value="DESC">降順</option>
                     </select>
                 </div>
-                <div class="">
-                    <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
+                <details class="accordion">
+                    <summary class="m-0 search_conditions"><span>検索条件の追加</span></summary>
                     <div class="search_conditions_inner">
                         <div>
                             <label>性別</label>
@@ -102,12 +103,12 @@
                             @endforeach
                         </div>
                     </div>
-                    <div>
-                        <input type="reset" value="リセット" form="userSearchRequest">
-                    </div>
-                    <div>
-                        <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
-                    </div>
+                </details>
+                <div>
+                    <input type="reset" value="リセット" form="userSearchRequest">
+                </div>
+                <div>
+                    <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
                 </div>
                 <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
             </div>
