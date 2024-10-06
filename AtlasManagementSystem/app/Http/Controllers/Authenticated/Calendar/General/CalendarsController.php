@@ -35,4 +35,9 @@ class CalendarsController extends Controller
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
+
+        //予約の削除機能
+        public function delete(){
+         return redirect('/calendar/{user_id}');
+    }
 }

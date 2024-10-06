@@ -54,36 +54,40 @@
             @endforeach
         </div>
         <div class="search_area w-25 border">
-            <div class="">
+            <div class="search_area_inner">
                 <div>
-                    <lavel>検索</lavel>
-                    <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
+                    <lavel class="lavel_l">検索</lavel>
+                    <input type="text" class="answer" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
                 </div>
                 <div>
-                    <lavel>カテゴリ</lavel>
+                    <lavel class="lavel_m">カテゴリ</lavel>
                     <select form="userSearchRequest" name="category">
-                        <option value="name">名前</option>
-                        <option value="id">社員ID</option>
+                        <option class="answer" value="name">名前</option>
+                        <option class="answer" value="id">社員ID</option>
                     </select>
                 </div>
                 <div>
-                    <label>並び替え</label>
+                    <label class="lavel_m">並び替え</label>
                     <select name="updown" form="userSearchRequest">
                         <option value="ASC">昇順</option>
                         <option value="DESC">降順</option>
                     </select>
                 </div>
                 <details class="accordion">
-                    <summary class="m-0 search_conditions"><span>検索条件の追加</span></summary>
+                    <summary class="m-0 search_conditions lavel_m"><span class="lavel_m">検索条件の追加</span></summary>
+                    <span class="line"></span>
                     <div class="search_conditions_inner">
                         <div>
-                            <label>性別</label>
-                            <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
-                            <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
-                            <span>その他</span><input type="radio" name="sex" value="3" form="userSearchRequest">
+                            <label class="lavel_m">性別</label>
+                            <div class="sex_area">
+                                <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
+                                <span>女</span><input type="radio" name="sex" value="2" form="userSearchRequest">
+                                <span>その他</span><input type="radio" name="sex" value="3"
+                                    form="userSearchRequest">
+                            </div>
                         </div>
                         <div>
-                            <label>権限</label>
+                            <label class="lavel_m">権限</label>
                             <select name="role" form="userSearchRequest" class="engineer">
                                 <option selected disabled>----</option>
                                 <option value="1">教師(国語)</option>
@@ -93,9 +97,9 @@
                             </select>
                         </div>
                         <div class="selected_engineer">
-                            <label>選択科目</label>
+                            <label class="lavel_m">選択科目</label>
                             @foreach ($subjects as $subject)
-                                <div>
+                                <div class="select_area">
                                     <lavel>{{ $subject->subject }}</lavel>
                                     <input type="checkbox" name="subjects[]" value="{{ $subject->id }}"
                                         form="userSearchRequest">
@@ -105,10 +109,11 @@
                     </div>
                 </details>
                 <div>
-                    <input type="reset" value="リセット" form="userSearchRequest">
+                    <input type="submit" name="search_btn" value="検索" form="userSearchRequest" class="post_btn">
                 </div>
                 <div>
-                    <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+                    <input type="reset" value="リセット" form="userSearchRequest" class="reset_btn">
+
                 </div>
                 <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
             </div>

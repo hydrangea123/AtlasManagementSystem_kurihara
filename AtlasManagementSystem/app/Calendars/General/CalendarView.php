@@ -40,6 +40,7 @@ class CalendarView{
         $startDay = $this->carbon->copy()->format("Y-m-01");
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
+        // 1日以降　&&　今日より前だったら
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
           $html[] = '<td class="calendar-td past-day">';
         }else{
@@ -63,9 +64,25 @@ class CalendarView{
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                         // ↑予約している過去日
           }else{
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            $html[] = '<a class="js-modal-open btn btn-danger p-0 w-75" style="font-size:12px" href="">'. $reservePart .'</a>';
+            // $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                         // ↑予約している未来日
+            //   モーダルの中身
+                   $html[] = '<div class="modal js-modal">';
+                   $html[] =    '<div class="modal__bg js-modal-close"></div>';
+                   $html[] =        '<div class="modal__content">';
+                   $html[] =            '<form action="'.route('deleteParts') .'" method="post">';
+                   $html[] =                '<p clas="date">予約日：'.$day->authReserveDate($day->everyDay())->first()->setting_reserve.'</p>';
+                   $html[] =                '<p>時間：'.$reservePart.'</p>';
+                   $html[] =                '<p>上記の予約をキャンセルしてもよろしいですか？</p>';
+                   $html[] =                '<input type="hidden" name="" class="modal_id" value="">';
+                   $html[] =                 csrf_field() ;
+                   $html[] =            '</form>';
+                   $html[] =        '<a class="js-modal-close btn btn-primary" href="">閉じる</a>';
+                   $html[] =        '<a class="js-modal-close btn btn-danger" href="">キャンセル</a>';
+                   $html[] =    '</div>';
+                   $html[] ='</div>';
           }
         }else{
             if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){

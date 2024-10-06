@@ -121,6 +121,10 @@ li {
 
 /* 掲示板 */
 /* アコーディオンメニュー */
+.accordion {
+    margin-bottom: 45px;
+}
+
 .accordion summary {
     width: 280px;
     display: flex;
@@ -256,7 +260,7 @@ li {
 }
 
 .modal-inner-body textarea {
-    height: 150px;
+    height: 147px;
     resize: none;
 }
 
@@ -329,7 +333,7 @@ li {
 
 .posted_like_btn {
     width: 137px;
-    padding: 5px;
+    padding: 8px;
     background-color: #e38eab;
     color: #fff;
 
@@ -337,7 +341,7 @@ li {
 
 .my_post_btn {
     width: 137px;
-    padding: 5px;
+    padding: 8px;
     background-color: #ebbc5d;
     color: #fff;
 }
@@ -373,7 +377,10 @@ li {
     background-color: #03aad2;
     border-radius: 5px;
     margin-bottom: 15px;
-
+    display: block;
+    color: #fff;
+    padding: 7px;
+    border: none;
 }
 
 .post_btn a {
@@ -465,8 +472,9 @@ li {
 
 .search_conditions_inner {
     display: none;
-    background: #FFF;
 }
+
+
 
 .subject_edit_btn {
     font-size: 12px;
@@ -480,6 +488,49 @@ li {
 
 .profile_p {
     font-weight: bold;
+}
+
+/* ユーザー検索　検索エリア */
+.lavel_l {
+    font-size: 1.5rem;
+    color: #466d91;
+}
+
+.lavel_m {
+    font-size: 0.9rem;
+    color: #466d91;
+    display: block;
+}
+
+.answer,
+.search_area_inner select {
+    display: block;
+    border: none;
+    background-color: #e0e5e9;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.sex_area {
+    display: block;
+}
+
+.select_area {
+    display: inline-block;
+}
+
+.reset_btn {
+    border: none;
+    background-color: #f1f7fe;
+    color: #03aad2;
+    display: block;
+    margin: 0 auto;
+}
+
+.line {
+    width: 100px;
+    height: 1px;
+    color: #03aad2;
 }
 
 /* 新規登録 */
@@ -580,4 +631,35 @@ li {
 .reserve_btn {
     position: relative;
     top: 15px;
+}
+
+/* スクール予約　モーダル */
+.content {
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.modal {
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal__bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
 }
