@@ -31,6 +31,7 @@ class CalendarWeekDay{
 
     $html[] = '<div class="text-left">';
     if($one_part){
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/{date}/{part}">1部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">1部</p>';
     }
     if($two_part){
