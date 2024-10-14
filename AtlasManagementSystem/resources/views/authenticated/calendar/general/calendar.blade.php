@@ -6,11 +6,11 @@
             <p class="text-center">{{ $calendar->getTitle() }}</p>
 
             <div class="w-75 m-auto border">
-
-                <div class="">
+                <div>
                     {!! $calendar->render() !!}
                 </div>
             </div>
+
             <div class="text-right w-75 m-auto">
                 <input type="submit" class="btn btn-primary reserve_btn" value="予約する" form="reserveParts">
             </div>

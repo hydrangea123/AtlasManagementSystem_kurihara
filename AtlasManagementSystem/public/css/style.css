@@ -39,6 +39,11 @@ li {
     top: 6px;
 }
 
+/* ログイン画面 */
+.register_btn {
+    padding-bottom: 18px;
+}
+
 /* トップページ */
 .user_status {
     border-radius: 10px;
@@ -77,10 +82,6 @@ li {
     font-size: 12px;
 }
 
-.adjust-table {
-    width: 70% !important;
-}
-
 .adjust-table td {
     padding: 0 !important;
 }
@@ -91,6 +92,11 @@ li {
 
 .adjust-table-btn {
     width: 70%;
+}
+
+/* スクール枠登録 */
+.table_w {
+    width: 80%;
 }
 
 /* モーダル */
@@ -419,7 +425,7 @@ li {
 .line {
     width: 275px;
     height: 2px;
-    background-color: gray;
+    background-color: lightgray;
     display: block;
     margin: 15px 0;
 }
@@ -428,6 +434,7 @@ li {
 /* ユーザー検索 */
 .search_content {
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .search_content,
@@ -487,8 +494,6 @@ li {
     display: none;
 }
 
-
-
 .subject_edit_btn {
     font-size: 12px;
     color: #0000FF;
@@ -503,6 +508,10 @@ li {
     font-weight: bold;
 }
 
+.main_category {
+    margin-bottom: 30px;
+}
+
 /* ユーザー検索　検索エリア */
 .lavel_l {
     font-size: 1.5rem;
@@ -513,6 +522,11 @@ li {
     font-size: 0.9rem;
     color: #466d91;
     display: block;
+    margin-top: 10px;
+}
+
+.search_area_inner {
+    margin-top: 75px;
 }
 
 .answer,
@@ -520,7 +534,7 @@ li {
     display: block;
     border: none;
     background-color: #e0e5e9;
-    padding: 5px;
+    padding: 8px;
     border-radius: 5px;
 }
 
@@ -530,6 +544,10 @@ li {
 
 .select_area {
     display: inline-block;
+}
+
+.reset_d {
+    width: 280px;
 }
 
 .reset_btn {
@@ -594,10 +612,6 @@ li {
     background: #fff;
 }
 
-.text-center {
-    padding-bottom: 18px;
-}
-
 .input_bg {
     background-color: #fff;
 }
@@ -638,6 +652,12 @@ li {
 .reserve_btn {
     position: relative;
     top: 15px;
+}
+
+.reserve_setting_btn {
+    position: relative;
+    top: 15px;
+    left: 45px;
 }
 
 /* スクール予約　モーダル */
@@ -682,4 +702,51 @@ li {
 
 .modal_btn a {
     display: block;
+}
+
+/* 予約確認画面 */
+.part {
+    display: flex;
+    justify-content: space-between;
+    width: 82px;
+    margin: 0 auto;
+}
+
+.part_p {
+    display: inline-block;
+}
+
+.part_a {
+    color: #03aad2;
+}
+
+/* 予約詳細画面 */
+.title_top {
+    font-size: 1.1rem;
+}
+
+.reserve_detail_content {
+    width: 850px;
+}
+
+.reserve_detail_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table_title_t {
+    padding: 10px 0 10px 30px;
+}
+
+.reserve_detail_tr:nth-child(2n+1) {
+    background-color: #e5f6fa;
+}
+
+#table_title {
+    color: #fff;
+    background-color: #03aad2;
+}
+
+#table_title th:not(:first-child) {
+    padding-left: 45px;
 }

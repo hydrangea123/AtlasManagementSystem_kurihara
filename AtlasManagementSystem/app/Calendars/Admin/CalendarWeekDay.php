@@ -30,15 +30,24 @@ class CalendarWeekDay{
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
 
     $html[] = '<div class="text-left">';
+    $toDay = $this->carbon->copy()->format("Y-m-d");
     if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/{date}/{part}">1部</a></p>';
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+      $html[] = '<div class="part">';
+      $html[] = '<a href="/calendar/'.$toDay.'/1" class="day_part m-0 pt-1 part_a">1部</a>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$one_part->users->count().'</p>';
+      $html[] = '</div>';
     }
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $html[] = '<div class="part">';
+      $html[] = '<a href="/calendar/'.$toDay.'/2" class="day_part m-0 pt-1 part_a">2部</a>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$two_part->users->count().'</p>';
+      $html[] = '</div>';
     }
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $html[] = '<div class="part">';
+      $html[] = '<a href="/calendar/{$toDay}/3" class="day_part m-0 pt-1 part_a">3部</a>';
+      $html[] = '<p class="day_part m-0 pt-1">'.$three_part->users->count().'</p>';
+      $html[] = '</div>';
     }
     $html[] = '</div>';
 
