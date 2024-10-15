@@ -42,7 +42,7 @@ class CalendarView{
 
         // 1日以降　&&　今日より前だったら
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="calendar-td past-day">';
+          $html[] = '<td class="calendar-td past-day '.$day->getClassName().'">';
         }else{
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
@@ -54,7 +54,7 @@ class CalendarView{
 
         // 当月１日から末日まで（10月すべて）&&（かつ）今日よりも以前の日（過去日）
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">リモ'.$reservePart.'部参加</p>';
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px;color:black;">リモ'.$reservePart.'部参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
                         // ↑予約している過去日
           }else{
@@ -81,7 +81,7 @@ class CalendarView{
           }
         }else{
             if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-                $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+                $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px;color:black;">受付終了</p>';
                 $html[] = '<input type="hidden" name="getPart[]" form="reserveParts">';
                         // ↑予約していない過去日
               }else{

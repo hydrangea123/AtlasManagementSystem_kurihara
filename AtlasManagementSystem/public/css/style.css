@@ -23,7 +23,7 @@ li {
 /* サイドバー */
 .sidebar {
     width: 200px;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #03AAD2;
     font-weight: bold;
 }
@@ -37,11 +37,6 @@ li {
     padding-left: 5px;
     position: relative;
     top: 6px;
-}
-
-/* ログイン画面 */
-.register_btn {
-    padding-bottom: 18px;
 }
 
 /* トップページ */
@@ -134,6 +129,7 @@ li {
 .accordion summary {
     width: 280px;
     display: flex;
+    margin-top: 10px;
     justify-content: space-between;
     align-items: center;
     position: relative;
@@ -478,7 +474,6 @@ li {
 .one_person {
     width: 23%;
     /* 親要素の1/4より小さい値 */
-    height: 210px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px #fff, 0 0 10px #ccc, 0 0 10px #aaa;
@@ -575,6 +570,10 @@ li {
 }
 
 /* ログイン画面 */
+.register_btn {
+    padding-bottom: 18px;
+}
+
 .home_box {
     transform: translate(-50%, -50%);
     position: absolute;
@@ -749,4 +748,40 @@ li {
 
 #table_title th:not(:first-child) {
     padding-left: 45px;
+}
+
+/* プロフィール画面 */
+.subject_inner {
+    margin-top: 10px;
+}
+
+.select_subject_edit {
+    display: inline-block;
+}
+
+.subject_edit_btn {
+    color: #03aad2;
+}
+
+.select_subject .btn-primary {
+    color: #fff;
+}
+
+.select_subject summary::after {
+    transform: translateY(-25%) rotate(45deg);
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: 10px;
+    border-bottom: 2px solid #03aad2;
+    border-right: 2px solid #03aad2;
+    content: '';
+    transition: transform .3s;
+    position: relative;
+    top: 2px;
+    right: 179px;
+}
+
+.select_subject[open]summary::after {
+    transform: rotate(225deg);
 }
