@@ -5,9 +5,7 @@
             <p class="text-center">{{ $calendar->getTitle() }}</p>
 
             <div class="m-auto border table_w">
-                <div>
-                    {!! $calendar->render() !!}
-                </div>
+                {!! $calendar->render() !!}
             </div>
             <div class="adjust-table-btn m-auto text-right">
                 <input type="submit" class="btn btn-primary reserve_setting_btn" value="登録" form="reserveSetting"
